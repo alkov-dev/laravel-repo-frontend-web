@@ -1,5 +1,6 @@
 import httpClient from "../http-client";
-import { AuthResponse, LoginFormValues, RegisterFormValues } from "../types/api";
+import { authTypes } from "../types/auth-types";
+
 
 async function ensureCsrf() {
     try {
@@ -9,13 +10,14 @@ async function ensureCsrf() {
     }
 }
 
-export const loginRequest = async ({ data, url }: { data: LoginFormValues, url: string }): Promise<AuthResponse> => {
+
+export const loginRequest = async ({ data, url }: { data: authTypes['loginRequestBodyType'], url: string }): Promise<authTypes['loginResponseDataType']> => {
     await ensureCsrf();
     const response = await httpClient.post(url, data);
     return response.data;
 };
 
-export const registerRequest = async ({ data, url }: { data: RegisterFormValues, url: string }): Promise<AuthResponse> => {
+export const registerRequest = async ({ data, url }: { data: authTypes['registerRequestBodyType'], url: string }): Promise<authTypes['registerResponseDataType']> => {
     await ensureCsrf();
     const response = await httpClient.post(url, data);
     return response.data;

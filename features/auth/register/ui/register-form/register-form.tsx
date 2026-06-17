@@ -11,15 +11,14 @@ import { registerRequest } from '@/shared/api/requests/auth-requests';
 import { showNotification } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
 import { useAuthStore } from '@/entities/auth/model/store';
-import { AuthResponse } from '@/shared/api/types/api';
+
 
 export function RegisterForm() {
     const { setToken } = useAuthStore();
 
     const registerMutation = useMutation({
         mutationFn: registerRequest,
-        onSuccess: (data: AuthResponse) => {
-            console.log("🚀 ~ data при регистрации:", data);
+        onSuccess: (data) => {
             setToken(data.token);
 
             showNotification({

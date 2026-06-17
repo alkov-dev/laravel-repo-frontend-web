@@ -1,6 +1,8 @@
 import httpClient from "../http-client";
+import { userTypes } from "../types/user-types";
 
-export const currentUserRequest = async (): Promise<unknown> => {
+
+export const currentUserRequest = async (): Promise<userTypes['currentUserResponseDataType']> => {
     const response = await httpClient.get('/api/me');
     return response.data;
 };

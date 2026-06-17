@@ -11,7 +11,6 @@ import { loginRequest } from '@/shared/api/requests/auth-requests';
 import { showNotification } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
 import { useAuthStore } from '@/entities/auth/model/store';
-import { AuthResponse } from '@/shared/api/types/api';
 
 export function LoginForm() {
     const router = useRouter();
@@ -20,8 +19,8 @@ export function LoginForm() {
 
     const loginMutation = useMutation({
         mutationFn: loginRequest,
-        onSuccess: (data: AuthResponse) => {
-            console.log("🚀 ~ data при входе:", data);
+        onSuccess: (data) => {
+
             setToken(data.token);
 
             showNotification({
